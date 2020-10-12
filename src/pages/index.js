@@ -1,5 +1,13 @@
 import React from "react"
+import Layout from "../components/Layout"
+import Resources from "../components/Resources"
 
-export default function Home() {
-  return <div>Hello world!</div>
+const IndexPage = () => {
+  return (
+    <Layout>
+      <Resources />
+    </Layout>
+  )
 }
+
+export default IndexPage
