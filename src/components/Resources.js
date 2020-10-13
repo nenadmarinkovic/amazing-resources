@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from "react";
-import accordionItems from "./AccordionItems";
-import { Container, Flex } from "../styles/globalStyles";
-import { motion, useAnimation } from "framer-motion";
+import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
+import accordionItems from "../../src/items"
+import { Container, Flex } from "../styles/globalStyles"
+import { motion, useAnimation } from "framer-motion"
 import {
   HomeAboutSection,
   About,
   Services,
   AccordionHeader,
   AccordionContent,
-  AccordionIcon,
-} from "../styles/homeStyles";
+  AccordionIcon
+} from "../styles/homeStyles"
 
-import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer"
 
-const Resources = ({ onCursor }) => {
-  const [expanded, setExpanded] = useState(0);
-  const animation = useAnimation();
+const Resources = () => {
+  const [expanded, setExpanded] = useState(0)
+  const animation = useAnimation()
   const [aboutRef, inView] = useInView({
     triggerOnce: true,
-    rootMargin: "-300px",
-  });
+    rootMargin: "-300px"
+  })
 
   useEffect(() => {
     if (inView) {
-      animation.start("visible");
+      animation.start("visible")
     }
-  }, [animation, inView]);
+  }, [animation, inView])
 
   return (
     <HomeAboutSection
@@ -36,54 +37,39 @@ const Resources = ({ onCursor }) => {
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.8, ease: [0.6, 0.05, -0.01, 0.9] },
+          transition: { duration: 0.8, ease: [0.6, 0.05, -0.01, 0.9] }
         },
-        hidden: { opacity: 0, y: 72 },
+        hidden: { opacity: 0, y: 72 }
       }}
     >
       <Container>
         <Flex alignTop>
           <Services>
-            <h3>Services</h3>
+            
             {accordionItems.map((details, index) => (
               <Accordion
                 key={index}
                 details={details}
                 expanded={expanded}
                 setExpanded={setExpanded}
-                onCursor={onCursor}
               />
             ))}
           </Services>
-          <About>
-            <h2>
-              Furrow is an integrated, full-service creative studio offering
-              video production, creative development, and post-production
-              services.
-            </h2>
-            <p>
-              Everybody’s got a story. And we don’t stop until we’ve uncovered
-              what makes yours worth telling. Whether it’s working directly with
-              you, an agency partner, or putting the finishing touches on
-              something special, we’re ready to dig in and get our hands
-              dirty—are you?
-            </p>
-          </About>
+         
         </Flex>
       </Container>
     </HomeAboutSection>
-  );
-};
+  )
+}
 
-const Accordion = ({ details, expanded, setExpanded, onCursor }) => {
-  const isOpen = details.id === expanded;
+const Accordion = ({ details, expanded, setExpanded }) => {
+  const isOpen = details.id === expanded
 
   return (
     <>
       <AccordionHeader
         initial={false}
         onClick={() => setExpanded(isOpen ? false : details.id)}
-        onMouseLeave={onCursor}
         style={{ color: isOpen ? "black" : "red" }}
       >
         <AccordionIcon>
@@ -105,12 +91,20 @@ const Accordion = ({ details, expanded, setExpanded, onCursor }) => {
         animate={{ height: isOpen ? "100%" : "0" }}
         transition={{ duration: 0.8, ease: [0.6, 0.05, -0.01, 0.9] }}
       >
+        
         {details.results.map((result, index) => (
-          <span key={index}>{result.name}</span>
+          <span>
+            <Link to={result.url} key={index}>{result.name}</Link>
+            <div style={{color: "black", marginLeft: "30px"}}>
+              <p>
+              {result.descriptionTop}
+                </p>
+            </div>
+          </span>
         ))}
       </AccordionContent>
     </>
-  );
-};
+  )
+}
 
-export default Resources;
+export default Resources

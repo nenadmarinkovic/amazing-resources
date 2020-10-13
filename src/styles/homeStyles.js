@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const HomeAboutSection = styled(motion.div)`
-  /* margin-bottom: 200px; */
+export const HomeAboutSection = styled.div`
+  
 `;
 export const About = styled.div`
   width: 100%;
+  
   h2 {
     width: 60%;
     font-size: 2.3rem;
@@ -22,18 +23,17 @@ export const About = styled.div`
   }
 `;
 export const Services = styled.div`
-  width: 40%;
 `;
 
-export const AccordionHeader = styled(motion.div)`
+export const AccordionHeader = styled.div`
   width: 100%;
   color: #ea281e;
   height: 32px;
   display: flex;
   align-items: center;
   font-weight: 600;
-  font-size: 1.15rem;
-  margin: 8px 0;
+  font-size: 2rem;
+  margin: 12px 0;
   cursor: pointer;
   }
 `;
@@ -54,13 +54,13 @@ export const AccordionIcon = styled.div`
 export const AccordionContent = styled(motion.div)`
   overflow: hidden;
   padding-left: 40px;
-  cursor: pointer;
+ 
   span {
     width: 100%;
     margin: 8px 0;
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: #ea281e;
     display: block;
-    font-weight: 300;
+    
   }
 `;
